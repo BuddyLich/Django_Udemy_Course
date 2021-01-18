@@ -13,7 +13,7 @@ from blog.forms import PostForm, CommentForm
 
 
 class AboutView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'blog/about.html'
 
 
 class PostListView(ListView):
@@ -30,17 +30,17 @@ class PostDetailView(DetailView):
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
+    model = Post
     login_url = '/login/'
     redirect_field_name = 'blog/post_detail.html'
     form_class = PostForm
-    model = Post
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
     login_url = '/login/'
     redirect_field_name = 'blog/post_detail.html'
     form_class = PostForm
-    model = Post
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
@@ -72,7 +72,7 @@ def post_publish(request, pk):
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = CommentForm(request.Post)
+        form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
