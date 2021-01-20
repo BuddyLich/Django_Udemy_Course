@@ -10,3 +10,6 @@ class SignUp(CreateView):
     # means someone successfully sign up, they will reverse back to login page
     template_name = 'accounts/signup.html'
 
+
+
+
