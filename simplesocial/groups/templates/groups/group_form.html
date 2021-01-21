@@ -4,7 +4,7 @@
 {% block group_content %}
 <h4>Create a new group!</h4>
 <form action="{% url 'group:create' method='POST' id='groupForm' %}">
-    {% csrd_token %}
+    {% csrf_token %}
     {% bootstrap_form form %}
     <input type="submit" class="btn btn-primary btn-lg" value="Create">
 </form>
